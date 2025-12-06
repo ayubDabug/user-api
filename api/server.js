@@ -139,11 +139,12 @@ app.delete("/favourites/:id", passport.authenticate('jwt', { session: false }), 
 });
 
 app.get("/", (req, res) => {
-    res.json({ message: "User API is online" });
+    res.json({ message: "User API is ONLINE" });
 });
 
 
 module.exports = app;
+
 
 
 
