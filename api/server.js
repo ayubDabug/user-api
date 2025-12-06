@@ -143,10 +143,8 @@ app.get("/", (req, res) => {
 });
 
 
-app.listen(HTTP_PORT, () => {
-    console.log(`API listening on: ${HTTP_PORT}`);
+module.exports = app;
 
-});
 
 
 
