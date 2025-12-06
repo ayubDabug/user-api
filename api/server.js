@@ -7,7 +7,7 @@ const passport = require('passport');
 const passportJWT = require('passport-jwt');
 const jwt = require('jsonwebtoken');
 
-// JSON Web Token Setup
+// JSON Web Token Setup ss
 const ExtractJwt = passportJWT.ExtractJwt;
 const JwtStrategy = passportJWT.Strategy;
 
@@ -144,6 +144,7 @@ app.get("/", (req, res) => {
 
 
 module.exports = app;
+
 
 
 
