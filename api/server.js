@@ -138,9 +138,14 @@ app.delete("/api/user/favourites/:id", passport.authenticate('jwt', { session: f
         });
 });
 
+app.get("/", (req, res) => {
+    res.json({ message: "User API is online" });
+});
+
 
 app.listen(HTTP_PORT, () => {
     console.log(`API listening on: ${HTTP_PORT}`);
 
 });
+
 
