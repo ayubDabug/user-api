@@ -1,7 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
-require('dotenv').config();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const passportJWT = require('passport-jwt');
@@ -147,5 +147,6 @@ app.listen(HTTP_PORT, () => {
     console.log(`API listening on: ${HTTP_PORT}`);
 
 });
+
 
 
