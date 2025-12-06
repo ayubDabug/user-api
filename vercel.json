@@ -2,18 +2,21 @@
     "version": 2,
     "builds": [
         {
-            "src": "server.js",
+            "src": "api/index.js",  
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
+            // Matches /api/user/register
             "src": "/api/user/(.*)",  
-            "dest": "/server.js/$1"  
+            // The path is now rewritten to target the standard file location
+            "dest": "/api/index.js/$1"  
         },
         {
+            // Fallback for the base URL (e.g., /)
             "src": "/(.*)",
-            "dest": "/server.js"
+            "dest": "/api/index.js"
         }
     ]
 }
