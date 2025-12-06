@@ -60,7 +60,7 @@ const HTTP_PORT = process.env.PORT || 8080;
 
 // --- ROUTES ---
 
-app.post("/api/user/register", (req, res) => {
+app.post("/register", (req, res) => {
     const newUser = new UserModel(req.body);
     newUser.save()
         .then(user => {
@@ -71,7 +71,7 @@ app.post("/api/user/register", (req, res) => {
         });
 });
 
-app.post("/api/user/login", (req, res) => {
+app.post("/login", (req, res) => {
     UserModel.findOne({ userName: req.body.userName })
         .then(user => {
             if (user && user.password === req.body.password) { // Simple password check
@@ -95,7 +95,7 @@ app.post("/api/user/login", (req, res) => {
 });
 
 // Protected Routes
-app.get("/api/user/favourites", passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get("/favourites", passport.authenticate('jwt', { session: false }), (req, res) => {
     UserModel.findOne({ _id: req.user._id })
         .then(user => {
             res.json(user.favourites);
@@ -105,7 +105,7 @@ app.get("/api/user/favourites", passport.authenticate('jwt', { session: false })
         });
 });
 
-app.put("/api/user/favourites/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
+app.put("/favourites/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
     UserModel.updateOne(
         { _id: req.user._id },
         { $addToSet: { favourites: req.params.id } } // $addToSet prevents duplicates
@@ -122,7 +122,7 @@ app.put("/api/user/favourites/:id", passport.authenticate('jwt', { session: fals
         });
 });
 
-app.delete("/api/user/favourites/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
+app.delete("/favourites/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
     UserModel.updateOne(
         { _id: req.user._id },
         { $pull: { favourites: req.params.id } } // $pull removes the item
@@ -147,6 +147,7 @@ app.listen(HTTP_PORT, () => {
     console.log(`API listening on: ${HTTP_PORT}`);
 
 });
+
 
 
 
